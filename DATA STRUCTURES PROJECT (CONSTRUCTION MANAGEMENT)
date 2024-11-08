@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_NAME_LENGTH 50
+
+// Structure for materials
+struct Material {
+    char name[MAX_NAME_LENGTH];
+    int quantity;
+    struct Material *next;
+};
+
+// Structure for equipment
+struct Equipment {
+    char name[MAX_NAME_LENGTH];
+    char availability[MAX_NAME_LENGTH];
+    struct Equipment *next;
+};
+
+// Structure for transactions
+struct Transaction {
+    char item[MAX_NAME_LENGTH];
+    char type[MAX_NAME_LENGTH];
+    int quantity;
+    struct Transaction *next;
+};
+
+// Global pointers to heads of linked lists
+struct Material *materialHead = NULL;
+struct Equipment *equipmentHead = NULL;
+struct Transaction *transactionHead = NULL;
+
+// Function to create a new material node
+struct Material* createMaterialNode(char name[], int quantity) {
+    struct Material *newMaterial = (struct Material *)malloc(sizeof(struct Material));
+    if (newMaterial == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+    strcpy(newMaterial->name, name);
+    newMaterial->quantity = quantity;
